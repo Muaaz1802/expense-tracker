@@ -19,11 +19,20 @@ The Expense Tracker API provides a complete backend solution for expense managem
 
 ---
 
-## Deployed Link
+## Demo Link
 
->
-> ```
-<!-- > Production: https://your-domain.com -->
+[https://expense-tracker-kq8c.onrender.com/](https://expense-tracker-kq8c.onrender.com/)
+
+---
+
+## Demo Credentials
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Test User** | `demo@example.com` | `demo1234` |
+
+---
+
 
 ## Local Setup Instructions
 
