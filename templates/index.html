@@ -810,6 +810,75 @@
         border-radius: 10px;
       }
 
+      /* Mobile bottom nav */
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        z-index: 50;
+        padding: 0.35rem 0.5rem;
+        padding-bottom: max(0.35rem, env(safe-area-inset-bottom));
+        box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
+      }
+      .mobile-nav-inner {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.15rem;
+        padding: 0.35rem 0.5rem;
+        border: none;
+        background: none;
+        color: var(--text3);
+        font-family: var(--sans);
+        font-size: 0.65rem;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: var(--radius);
+        transition: color 0.15s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .mobile-nav-item .nav-icon {
+        font-size: 1.2rem;
+        width: auto;
+      }
+      .mobile-nav-item.active {
+        color: var(--accent);
+      }
+
+      /* Mobile header bar */
+      .mobile-header {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 40;
+      }
+      .mobile-header .brand-name {
+        font-family: var(--serif);
+        font-size: 1.25rem;
+        font-weight: 900;
+        color: var(--accent);
+      }
+      .mobile-header .btn-sm {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.75rem;
+      }
+
       @media (max-width: 900px) {
         .app-layout {
           grid-template-columns: 1fr;
@@ -817,11 +886,162 @@
         .sidebar {
           display: none;
         }
+        .mobile-nav {
+          display: block;
+        }
+        .mobile-header {
+          display: flex;
+        }
+        .main-content {
+          padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+        }
         .stats-grid {
           grid-template-columns: 1fr 1fr;
+          gap: 0.75rem;
         }
         .two-col {
           grid-template-columns: 1fr;
+        }
+        .page {
+          padding: 1.25rem 1rem;
+        }
+        .page-header {
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+        .page-title {
+          font-size: 1.4rem;
+        }
+        .page-header .btn {
+          width: 100%;
+        }
+
+        /* Stats cards */
+        .stat-card {
+          padding: 1rem;
+        }
+        .stat-value {
+          font-size: 1.35rem;
+        }
+
+        /* Tables */
+        .table-wrap {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+        th {
+          padding: 0.6rem 1rem;
+          font-size: 0.7rem;
+        }
+        td {
+          padding: 0.7rem 1rem;
+          font-size: 0.82rem;
+        }
+
+        /* Card padding */
+        .card-header {
+          padding: 1rem 1.15rem;
+        }
+        .card-body {
+          padding: 1.15rem;
+        }
+
+        /* Expense filters */
+        .expense-filters {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        .expense-filters input,
+        .expense-filters select {
+          width: 100%;
+          min-width: 0;
+        }
+
+        /* Modal adjustments */
+        .modal-overlay {
+          padding: 0.75rem;
+          align-items: flex-end;
+        }
+        .modal {
+          border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+          max-height: 90vh;
+          overflow-y: auto;
+          max-width: 100%;
+        }
+        .modal-body {
+          padding: 1.15rem;
+        }
+        .modal-footer {
+          padding: 1rem 1.15rem;
+          flex-direction: column-reverse;
+        }
+        .modal-footer .btn {
+          width: 100%;
+        }
+        .field-row {
+          grid-template-columns: 1fr;
+        }
+
+        /* Reports header */
+        #page-reports .page-header > div:last-child {
+          width: 100%;
+        }
+        #page-reports .page-header input[type="date"] {
+          width: 100%;
+        }
+
+        /* Chart bar labels */
+        .chart-bar-label {
+          width: 70px;
+          font-size: 0.75rem;
+        }
+        .chart-bar-val {
+          width: 65px;
+          font-size: 0.75rem;
+        }
+
+        /* Category cards */
+        .cat-card {
+          padding: 1rem;
+        }
+
+        /* Auth card */
+        .auth-card {
+          padding: 1.75rem;
+          border-radius: var(--radius-lg);
+        }
+
+        /* Toast */
+        #toast {
+          bottom: calc(4.5rem + env(safe-area-inset-bottom));
+          left: 1rem;
+          right: 1rem;
+          text-align: center;
+        }
+
+        /* Budget grid */
+        #budgets-grid {
+          grid-template-columns: 1fr !important;
+        }
+
+        /* Category grid */
+        #categories-grid {
+          grid-template-columns: 1fr !important;
+        }
+      }
+
+      @media (max-width: 400px) {
+        html {
+          font-size: 14px;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+        .stat-value {
+          font-size: 1.5rem;
+        }
+        .page {
+          padding: 1rem 0.75rem;
         }
       }
     </style>
@@ -922,6 +1142,13 @@
         </aside>
 
         <main class="main-content">
+          <!-- Mobile Header -->
+          <div class="mobile-header">
+            <div class="brand-name">Ledger</div>
+            <button class="btn btn-ghost btn-sm" onclick="handleLogout()">
+              Sign Out
+            </button>
+          </div>
           <div id="page-dashboard" class="page active">
             <div class="page-header">
               <div>
@@ -1262,6 +1489,47 @@
         </main>
       </div>
     </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav" id="mobile-nav">
+      <div class="mobile-nav-inner">
+        <button
+          class="mobile-nav-item active"
+          onclick="mobileNavTo('dashboard')"
+          data-page="dashboard"
+        >
+          <span class="nav-icon">◈</span>Home
+        </button>
+        <button
+          class="mobile-nav-item"
+          onclick="mobileNavTo('expenses')"
+          data-page="expenses"
+        >
+          <span class="nav-icon">⊟</span>Expenses
+        </button>
+        <button
+          class="mobile-nav-item"
+          onclick="mobileNavTo('categories')"
+          data-page="categories"
+        >
+          <span class="nav-icon">◉</span>Categories
+        </button>
+        <button
+          class="mobile-nav-item"
+          onclick="mobileNavTo('budgets')"
+          data-page="budgets"
+        >
+          <span class="nav-icon">◫</span>Budgets
+        </button>
+        <button
+          class="mobile-nav-item"
+          onclick="mobileNavTo('reports')"
+          data-page="reports"
+        >
+          <span class="nav-icon">◎</span>Reports
+        </button>
+      </div>
+    </nav>
 
     <div class="modal-overlay" id="expense-modal">
       <div class="modal">
@@ -1681,7 +1949,17 @@
           if (n.getAttribute("onclick")?.includes(page))
             n.classList.add("active");
         });
+        // Sync mobile nav
+        document.querySelectorAll(".mobile-nav-item").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.page === page);
+        });
         if (page === "reports") loadReports();
+        // Scroll to top on page change
+        document.querySelector(".main-content")?.scrollTo(0, 0);
+      }
+
+      function mobileNavTo(page) {
+        navTo(page);
       }
 
       async function loadAll() {
