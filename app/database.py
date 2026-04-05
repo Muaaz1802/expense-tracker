@@ -12,7 +12,9 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:
     raise RuntimeError("DATABASE_URL not set")
 # engine = create_engine(DATABASE_URL)
-engine = create_async_engine(DATABASE_URL, echo=settings.DEBUG)
+engine = create_async_engine(
+    DATABASE_URL, echo=settings.DEBUG, content_args={"statement_cache_size": 0}
+)
 
 AsyncSessionLocal = async_sessionmaker(bind=engine, expire_on_commit=False)
 
