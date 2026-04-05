@@ -841,7 +841,7 @@
         background: none;
         color: var(--text3);
         font-family: var(--sans);
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         font-weight: 500;
         cursor: pointer;
         border-radius: var(--radius);
@@ -880,6 +880,9 @@
       }
 
       @media (max-width: 900px) {
+        html {
+          font-size: 17px;
+        }
         .app-layout {
           grid-template-columns: 1fr;
         }
@@ -921,7 +924,7 @@
           padding: 1rem;
         }
         .stat-value {
-          font-size: 1.35rem;
+          font-size: 1.5rem;
         }
 
         /* Tables */
@@ -931,11 +934,11 @@
         }
         th {
           padding: 0.6rem 1rem;
-          font-size: 0.7rem;
+          font-size: 0.78rem;
         }
         td {
           padding: 0.7rem 1rem;
-          font-size: 0.82rem;
+          font-size: 0.92rem;
         }
 
         /* Card padding */
@@ -992,12 +995,12 @@
 
         /* Chart bar labels */
         .chart-bar-label {
-          width: 70px;
-          font-size: 0.75rem;
+          width: 80px;
+          font-size: 0.85rem;
         }
         .chart-bar-val {
-          width: 65px;
-          font-size: 0.75rem;
+          width: 75px;
+          font-size: 0.85rem;
         }
 
         /* Category cards */
@@ -1032,7 +1035,7 @@
 
       @media (max-width: 400px) {
         html {
-          font-size: 14px;
+          font-size: 16px;
         }
         .stats-grid {
           grid-template-columns: 1fr;
@@ -1851,6 +1854,10 @@
         }
         try {
           const data = await POST("/api/v1/auth/login", { email, password });
+          if (!data || !data.access_token) {
+            showAuthError("Invalid email or password.");
+            return;
+          }
           STATE.token = data.access_token;
           STATE.refreshToken = data.refresh_token || "";
           localStorage.setItem("ledger_token", STATE.token);
